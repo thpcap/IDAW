@@ -1,0 +1,20 @@
+body{
+    display: flex;
+}
+.top{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+hr{
+    width: 100%;
+}
+.centered{
+    text-align: center;
+}
+#menu{
+    position: relative;
+    top: 0;
+    width: 20%;
+    border: 1px solid black;
+}
