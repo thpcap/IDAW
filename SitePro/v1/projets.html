@@ -9,27 +9,49 @@
     <body>
         <div id="top" class="top">
             <div class="flexbox">
-                <nav class="menu">
+                <div class="menu">
                     <p style="font-size: large; margin:15px;">Menu</p>
-                    <ul>   
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="cv.html">CV</a></li>
-                        <li id="currentpage"><a href="projets.html">Projets</a></li>
-                    </ul>
-                </nav>
+                    <button onclick="window.location.href = 'index.html';" >Acceuil</button>
+                    <button onclick="window.location.href = 'cv.html';" >CV</button>
+                    <button onclick="window.location.href = 'projets.html';" id="currentpage">Projets</button>
+                </div>
                 <h1 class="centered" id="title">Projets</h1>
+                <img src="logo-blanc.png" alt="" style="width: 15%;margin-right: 20px;">
             </div>
+            <br>
+            <div style="background-color: white; height: 1px; width: 100%; bottom: 0;"></div>
         </div>
 
         <div id="contenu" class="contenu">
-            <h1>Menu</h1>
-            <p>Welcome to this website</p>
+            <div id="projet1" style="border: 2px white solid; background-color: #151515 ; width: 100%; margin-top: 20px; border-radius: 30px;">
+                <h1 style="color:aliceblue; margin-left: 10px;">/Projet 1/</h1>
+                <h2 style="color:crimson; margin-left: 10px;">/Temps du projet/</h2>
+                <p style="margin-left: 10px; color: darkcyan;">/explication du projet/</p>
+            </div>
 
+            <div id="projet2" style="border: 2px white solid; background-color: darkblue ; width: 100%; margin-top: 20px; border-radius: 30px;">
+                <h1 style="color:aliceblue; margin-left: 10px;">/Projet 2/</h1>
+                <h2 style="color:crimson; margin-left: 10px;">/Temps du projet/</h2>
+                <p style="margin-left: 10px; color: darkcyan;">/explication du projet/</p>
+            </div>
+
+            <div id="projet3" style="border: 2px white solid; background-color: red ; width: 100%; margin-top: 20px; border-radius: 30px;">
+                <h1 style="color:aliceblue; margin-left: 10px;">/Projet 3/</h1>
+                <h2 style="color:crimson; margin-left: 10px;">/Temps du projet/</h2>
+                <p style="margin-left: 10px; color: darkcyan;">/explication du projet/</p>
+            </div>
+
+            <div id="projet4" style="border: 2px white solid; background-color: orange; width: 100%; margin-top: 20px; border-radius: 30px;">
+                <h1 style="color:aliceblue; margin-left: 10px;">/Projet 4/</h1>
+                <h2 style="color:crimson; margin-left: 10px;">/Temps du projet/</h2>
+                <p style="margin-left: 10px; color: darkcyan;">/explication du projet/</p>
+            </div>
+            <div class="bottom"></div>
         </div>
 
         <div id="bottom" class="bottom">
-            <hr>
-            <p style="position: relative; left: 0;">Website created by Thomas CAPRON for a class in web developpement</p>
+            <div style="background-color: white; height: 1px; width: 100%;"></div>
+            <p style="position: relative; left: 0;">Website created by Thomas CAPRON for a course in web developpement</p>
         </div>
     </body>
 </html>

@@ -9,28 +9,31 @@
     <body>
         <div id="top" class="top">
             <div class="flexbox">
-                <nav class="menu">
+                <div class="menu">
                     <p style="font-size: large; margin:15px;">Menu</p>
-                    <ul>   
-                        <li><a href="index.html">Accueil</a></li>
-                        <li id="currentpage"><a href="cv.html">CV</a></li>
-                        <li><a href="projets.html">Projets</a></li>
-                    </ul>
+                    <button onclick="window.location.href = 'index.html';" >Acceuil</button>
+                    <button onclick="window.location.href = 'cv.html';" id="currentpage">CV</button>
+                    <button onclick="window.location.href = 'projets.html';">Projets</button>
+                </div>
                 </nav>
                 <h1 class="centered" id="title">CV</h1>
+                <img src="logo-blanc.png" alt="" style="width: 15%;margin-right: 20px;">
             </div>
+            <br>
+            <div style="background-color: white; height: 1px; width: 100%; bottom: 0;"></div>
         </div>
 
         <div id="contenu" class="contenu">
             <h1 style="color: lightblue;">Thomas CAPRON</h1>
-            <h2 style="color: greenyellow;">Futur developper web</h2>
+            <h2 style="color: cornflowerblue;">Futur developper web</h2>
             <p></p>
 
+            <div class="bottom"></div>
         </div>
 
         <div id="bottom" class="bottom">
-            <hr>
-            <p style="position: relative; left: 0;">Website created by Thomas CAPRON for a class in web developpement</p>
+            <div style="background-color: white; height: 1px; width: 100%;"></div>
+            <p style="position: relative; left: 0;">Website created by Thomas CAPRON for a course in web developpement</p>
         </div>
     </body>
 </html>
