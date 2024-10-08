@@ -52,3 +52,30 @@ body{
     height: 1px;
     width: 100%;
 }
+.immageIMT{
+    width: 7%;
+    margin: 10px;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    min-width: 100px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.immageIMT:hover{
+    background-color: black;
+    border-radius: 5px;
+}
+#bouttonContact{
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid rgb(10, 140, 140);
+    background-color: rgb(150, 150, 150);
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#bouttonContact:hover{
+    background-color: rgb(140, 140, 140);
+    border: 2px solid rgb(150, 150, 150);
+}
