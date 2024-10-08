@@ -8,6 +8,8 @@
     top:0px ;
     position: absolute;
     font-size: 15px;
+    margin: 5px;
+    z-index: 1;
     
 }
 nav ul{
@@ -52,6 +54,6 @@ nav > ul li:hover .sous{
     border-radius: 10px;
 }
 .deroulant > p::after{
-    content: " ↓";
+    content: " ▼";
     font-size: 12px;
 }
