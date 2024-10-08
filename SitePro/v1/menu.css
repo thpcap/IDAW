@@ -1,16 +1,14 @@
 .menu{
-    width: 10%;
-    flex: 0 0 50px;
+    width: 6%;
     border: 2px solid gray;
     background-color: gray;
     border-radius: 10px;
     text-align: center;
-    top:0px ;
+    top: 0px ;
     position: absolute;
-    font-size: 15px;
+    font-size: small;
     margin: 5px;
     z-index: 1;
-    
 }
 nav ul{
     list-style-type:none;
