@@ -38,8 +38,6 @@ body{
 }
 .centered{
     text-align: center;
-    margin-left: auto;
-    margin-top: auto;
 }
 .contenu{
     width: 100%;
