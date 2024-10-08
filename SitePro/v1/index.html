@@ -2,24 +2,30 @@
 <html>
     <head>
         <title>Acceuil</title>
+        <link rel="icon" href="logo.png">
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="menu.css">
     </head>
     <body>
-        <div id="top">
+        <div id="top" class="top">
             <div class="flexbox">
-                <div class="menu">
-                    <p style="font-size: large; margin:15px;">Menu</p>
-                    <button onclick="window.location.href = 'index.html';" id="currentpage">Acceuil</button>
-                    <button onclick="window.location.href = 'cv.html';">CV</button>
-                    <button onclick="window.location.href = 'projets.html';">Projets</button>
-                </div>
+                <nav class="menu">
+                    <ul>
+                        <li class="deroulant"><p>Menu</p>
+                            <ul class="sous">
+                                <li><a href="index.html" id="currentpage">Acceuil</a></li>
+                                <li><a href="cv.html">CV</a></li>
+                                <li><a href="projets.html">Projets</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
                 <h1 class="centered" id="title">Acceuil</h1>
                 <img src="logo-blanc.png" alt="" style="width: 15%;margin-right: 20px;">
             </div>
             <br>
-            <div style="background-color: white; height: 1px; width: 100%; bottom: 0;"></div>
+            <div style="background-color: white; height: 1px; width: 100%; bottom: 0; position: absolute;"></div>
         </div>
 
         <div id="contenu" class="contenu" style="text-align: center;">
