@@ -1,5 +1,8 @@
 <?php
     require_once('template_header.php');
+    createHeader('Contact');
+    require_once('template_menu.php');
+    renderMenuToHTML('contact');
 ?>
         <div id="contenu" class="contenu" style="text-align: center; font-size: x-large; justify-content: center;">
             <ul>

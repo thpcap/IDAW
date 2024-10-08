@@ -1,16 +1,9 @@
 <?php
     require_once('template_header.php');
+    createHeader('CV');
+    require_once('template_menu.php');
+    renderMenuToHTML('cv');
 ?>
-                <?php
-                    require_once('template_menu.php');
-                    renderMenuToHTML('cv');
-                ?>
-                <h1 class="centered" id="title">Contact</h1>
-            </div>
-            <br>
-            <div style="background-color: white; height: 1px; width: 100%; bottom: 0; position: absolute;"></div>
-        </div>
-        
         <div id="contenu" class="contenu" style="text-align: center;">
             <div style="margin: 10px;">
                 <h1 style="color: lightblue;">Thomas CAPRON</h1>

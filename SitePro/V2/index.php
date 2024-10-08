@@ -1,5 +1,8 @@
 <?php
     require_once('template_header.php');
+    createHeader('Acceuil');
+    require_once('template_menu.php');
+    renderMenuToHTML('index');
 ?>
         <div id="contenu" class="contenu" style="text-align: center; font-size: x-large;">
             <p style="color: blue; font-size: xxx-large;">Bienvenu sur ce Site Web</p>

@@ -1,5 +1,8 @@
 <?php
     require_once('template_header.php');
+    createHeader('Projets');
+    require_once('template_menu.php');
+    renderMenuToHTML('projets');
 ?>
         <div id="contenu" class="contenu">
             <div id="projet1" style="border: 2px white solid; background-color: #151515 ; width: auto; margin-top: 20px; border-radius: 30px;">

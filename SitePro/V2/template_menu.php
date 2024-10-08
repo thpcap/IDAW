@@ -2,28 +2,21 @@
     function renderMenuToHTML($currentPageId) {
         // un tableau qui définit la structure du site
         $mymenu = array(
-        // idPage titre
-        'index'=> array('Accueil'),
-        'cv'=> array('Cv'),
-        'projets'=> array('Projets')
-        'contacts'=> array('Contacts')
+        //idPage  =>  titre
+        'index'=> 'Accueil',
+        'cv'=> 'Cv',
+        'projets'=> 'Projets',
+        'contact'=> 'Contact'
         );
-        // ...
+        echo "<nav class=\"menu\">\n<ul>\n<li class=\"deroulant\">\n<p>Menu</p>\n<ul class=\"sous\">";
         foreach($mymenu as $pageId => $pageParameters) {
-        echo "...";
+            if ($pageId===$currentPageId) {
+                $currentPage="id=\"currentpage\"";
+            }else{
+                $currentPage="";
+            }
+            echo "<li><a href=\"".$pageId.".php\"".$currentPage.">".$pageParameters."</a></li>";
         }
-    // ...
+        echo "</ul>\n</li>\n</ul>\n</nav>\n<h1 class=\"centered\" id=\"title\">".$mymenu[$currentPageId]."</h1>\n</div>\n<br>\n<div style=\"background-color: white; height: 1px; width: 100%; bottom: 0; position: absolute;\">\n</div>\n</div>";
     }
 ?>
-<nav class="menu">
-                    <ul>
-                        <li class="deroulant"><p>Menu</p>
-                            <ul class="sous">
-                                <li><a href="index.php" >Acceuil</a></li>
-                                <li><a href="cv.php">CV</a></li>
-                                <li><a href="projets.php">Projets</a></li>
-                                <li><a href="contact.php">Contact</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
