@@ -1,0 +1,57 @@
+.menu{
+    width: 6%;
+    border: 2px solid gray;
+    background-color: gray;
+    border-radius: 10px;
+    text-align: center;
+    top: 0px ;
+    position: absolute;
+    font-size: small;
+    margin: 5px;
+    min-width: 60px;
+    z-index: 1;
+}
+nav ul{
+    list-style-type:none;
+    padding: 0;
+    margin: 0;
+}
+
+#currentpage{
+    background-color: lightgrey;
+    border: 1px solid white;
+}
+#currentpage:hover{
+    background-color:white ;
+    border: 1px solid lightgrey;
+}
+nav ul::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+nav a{
+    display: block;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid rgb(140, 140, 140);
+    background-color: rgb(150, 150, 150);
+}
+nav a:hover{
+    background-color: rgb(140, 140, 140);
+    border: 2px solid rgb(150, 150, 150);
+}
+.sous{
+    display:  none;
+}
+nav > ul li:hover .sous{
+    display: block;
+    background-color: rgb(160, 160, 160);
+    border: 2px solid rgb(160, 160, 160);
+    border-radius: 10px;
+}
+.deroulant > p::after{
+    content: " ▼";
+    font-size: 12px;
+}
