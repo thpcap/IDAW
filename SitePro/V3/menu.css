@@ -25,6 +25,14 @@ nav ul{
     background-color:white ;
     border: 1px solid lightgrey;
 }
+#currentlang{
+    background-color: lightgrey;
+    border: 1px solid white;
+}
+#currentlang:hover{
+    background-color:white ;
+    border: 1px solid lightgrey;
+}
 nav ul::after{
     content: "";
     display: table;
@@ -54,4 +62,5 @@ nav > ul li:hover .sous{
 .deroulant > p::after{
     content: " ▼";
     font-size: 12px;
+    
 }
