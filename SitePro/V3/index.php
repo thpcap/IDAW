@@ -26,7 +26,7 @@
         require_once($pageToInclude);
     else
         require_once($lang."/error_".$lang.".php");
-
+    
     //bas de page
     require_once("footer.php");
     createFooter($lang);

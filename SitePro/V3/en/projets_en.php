@@ -1,4 +1,4 @@
-<div id="content" class="content">
+<div id="contenu" class="contenu">
     <div id="project1" style="border: 2px white solid; background-color: #151515; width: auto; margin-top: 20px; border-radius: 30px;">
         <h1 style="color:aliceblue; margin-left: 10px;">/Project 1/</h1>
         <h2 style="color:crimson; margin-left: 10px;">/Project Duration/</h2>

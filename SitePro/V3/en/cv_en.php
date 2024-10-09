@@ -1,4 +1,4 @@
-<div id="content" class="content" style="text-align: center;">
+<div id="contenu" class="contenu" style="text-align: center;">
     <div style="margin: 10px;">
         <h1 style="color: lightblue;">Thomas CAPRON</h1>
         <h2 style="color: cornflowerblue;">Future Web Developer</h2>

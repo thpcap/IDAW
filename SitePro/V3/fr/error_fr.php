@@ -4,5 +4,4 @@
         <img src="images/pulp-fiction-john-travolta.gif" style="border-radius: 20px;" width="50%"><br>
         <button style="margin:10px; border-radius:3px">ok</button>
     </div>
-    
 </div>

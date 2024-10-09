@@ -52,6 +52,7 @@ body{
     top: 15%;
     left:0;
     bottom: 8% ;
+    margin-top: 1px;
 }
 .whiteline{
     background-color: white;
