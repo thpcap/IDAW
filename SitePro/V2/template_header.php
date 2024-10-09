@@ -2,7 +2,7 @@
     function createHeader($pageTitle) {
         echo"
         <!doctype html>
-        <html>
+        <html style=\"min-width: 700px;min-height: 900px;\">
             <head>
                 <title>".$pageTitle."</title>
                 <link rel=\"icon\" href=\"logo.png\">

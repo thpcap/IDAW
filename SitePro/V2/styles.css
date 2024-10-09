@@ -1,4 +1,6 @@
 body{
+    min-width: 700px;
+    min-height: 900px;
     background-color: black ;
     color: white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,6 +27,9 @@ body{
 #title{
     flex: 1 1 50px;
     font-size: xxx-large;
+    text-align: center;
+    display: block;
+    margin: auto;
 }
 .bottom{
     bottom: 0;
