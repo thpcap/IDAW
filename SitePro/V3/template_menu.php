@@ -19,9 +19,9 @@
         }
         echo "</ul>\n</li>\n</ul>\n</nav>\n<h1 class=\"centered\" id=\"title\">";
         if(array_key_exists($currentPageId,$mymenu)){
-            echo$mymenu[$currentPageId];
+            echo $mymenu[$currentPageId];
         }else{
-            echo'Erreur';
+            echo 'Erreur';
         }
         echo"</h1>\n</div>\n<br>\n<div style=\"background-color: white; height: 1px; width: 100%; bottom: 0; position: absolute;\">\n</div>\n</div>";
     }

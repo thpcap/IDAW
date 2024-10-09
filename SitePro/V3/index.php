@@ -1,18 +1,19 @@
 <?php
-    //gestion de la requette get
+    //gestion de la requette Get
     $currentPageId = 'accueil';
     $lang='fr';
+    $langArr=array('fr','en');
+
     if(isset($_GET['page'])) {
         $currentPageId = $_GET['page'];
     }
     if(isset($_GET['lang'])) {
         $lang = $_GET['lang'];
     }
-    $langArr=array('fr','en');
     if(!in_array($lang,$langArr)){
         $lang='fr';
     }
-    
+
     //haut de page
     require_once("template_header.php");
     createHeader($currentPageId,$lang);
