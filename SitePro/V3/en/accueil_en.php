@@ -3,5 +3,5 @@
     <p>Use the <b>menu</b> to navigate</p>
     <br><br>
     <p style="font-size: medium;">website created for a course of</p>
-    <img src="logo-blanc.png" alt="" height="20%">
+    <img src="images/logo-blanc.png" alt="" height="20%">
 </div>

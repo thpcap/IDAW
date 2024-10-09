@@ -32,7 +32,7 @@
             <h2>Formation</h2>
             <div style="display:flex; align-items: center; justify-content: center; text-align: left;font-size:medium">
                 <div style="background-color: rgb(60,60,60); border-radius: 15px; width:fit-content ; margin: 2%;">
-                    <img src="logo-blanc.png" alt="" style="display:block;margin:auto; margin-top:15px;" width="60%">
+                    <img src="images/logo-blanc.png" alt="" style="display:block;margin:auto; margin-top:15px;" width="30%">
                     <h2 style="margin: 10px; display:flex">2021-Actuellement: IMT Nord Europe: </h2>
                     <p style="font-size: large;">(Fusion de l'Ecole des Mines de Douai et de Télécom Lille)</p>
                     <ul>
@@ -40,8 +40,8 @@
                         <li>2021-2023: Classe préparatoire intégrée</li>
                     </ul>
                 </div>
-                <div style="background-color: white; color:black; border-radius: 15px; width: auto; margin: 2%;">
-                    <img src="logoLycée.png" alt="" style="display:block;margin:auto; margin-top:15px; height:80%;" >
+                <div style="background-color: white; color:black; border-radius: 15px; width:fit-content; margin: 2%;">
+                    <img src="images/logoLycée.png" alt="" style="display:block;margin:auto; margin-top:15px; height:80%;" >
                     <h2 style="margin: 10px;">2018-2021: Lycée général, technologique et professionnel Edmond Labbé Douai:</h2>
                     
                     <ul>

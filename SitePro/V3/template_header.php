@@ -18,17 +18,28 @@
                 <title>".$mymenu[$pageId]."</title>
                 <link rel=\"icon\" href=\"logo.png\">
                 <meta charset=\"utf-8\">
-                <link rel=\"stylesheet\" href=\"styles.css\">
-                <link rel=\"stylesheet\" href=\"menu.css\">
+                <link rel=\"stylesheet\" href=\"css/styles.css\">
+                <link rel=\"stylesheet\" href=\"css/menu.css\">
             </head>
         <body>
             <div id=\"top\" class=\"top\">
                     <div class=\"flexbox\">
                     <nav class=\"menu \" style=\"positon: absolute; right:0;\">
-                        <ul>
-                            <li><a  style=\"color:white;\" href=\"index.php?page=".$pageId."&lang=en\"><img src=\"UK-flag-png-xl.png\" width=20px alt=\"\"> English</a></li>
-                            <li><a  style=\"color:white;\" href=\"index.php?page=".$pageId."&lang=fr\"><img src=\"france-flag-png-xl.png\" width=15px alt=\"\"> Français</a></li>
-                        </ul>
+                        <ul>";
+        
+        $langArr=array(
+            'en'=>"images/UK-flag-png-xl.png\" width=20px alt=\"\"> English",
+            'fr'=>"images/france-flag-png-xl.png\" width=15px alt=\"\"> Français"
+        );
+        foreach ($langArr as $langf => $flag) {
+            $currentLang="";
+            if($langf==$lang){
+                $currentLang="id=\"currentlang\"";
+            }
+            echo "<li><a ".$currentLang." style=\"color:black;\" href=\"index.php?page=".$pageId."&lang=".$langf."\"><img src=\"".$flag."</a></li>";
+        }
+                            
+                    echo "</ul>
                     </nav>";
     }
 ?>

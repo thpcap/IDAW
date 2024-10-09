@@ -3,5 +3,5 @@
     <p>Utilisez le <b>menu</b> pour naviguer</p>
     <br><br>
     <p style="font-size: medium;">Site crée pour un cours d'</p>
-    <img src="logo-blanc.png" alt="" height="20%">
+    <img src="images/logo-blanc.png" alt="" height="20%">
 </div>

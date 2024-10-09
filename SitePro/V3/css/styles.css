@@ -1,9 +1,8 @@
 body{
-    min-width: 700px;
-    min-height: 900px;
     background-color: black ;
     color: white;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
 }
 #top{
     background-color: #202020;
