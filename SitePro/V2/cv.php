@@ -35,9 +35,29 @@
                     </div>
                 </div>
                 <div>
-                    <h2>Stages</h2>
+                    <h2>Formation</h2>
+                    <div style="display:flex; align-items: center; justify-content: center; text-align: left;">
+                        <div style="background-color: rgb(60,60,60); border-radius: 15px; width:fit-content ; margin: 2%;">
+                            <img src="logo-blanc.png" alt="" style="display:block;margin:auto; margin-top:15px;" width="60%">
+                            <h2 style="margin: 10px;">2021-Actuellement : IMT Nord Europe (Fusion de l'Ecole des Mines de Douai et de Télécom Lille) :</h2>
+                            <ul>
+                                <li>2024 : Actuellement en Formation Initiale sous Statut Étudiant (FISE) 2ème année de cycle ingénieur promotion 2026</li>
+                                <li>2021-2023 : Classe préparatoire intégrée</li>
+                            </ul>
+                        </div>
+                        <div style="background-color: white; color:black; border-radius: 15px; width: auto; margin: 2%;">
+                            <img src="logoLycée.png" alt="" style="display:block;margin:auto; margin-top:15px; height:80%;" >
+                            <h2 style="margin: 10px;">2018-2021 : Lycée général, technologique et professionnel Edmond Labbé Douai :</h2>
+                            
+                            <ul>
+                                <li>2021 : Bac général, option mathématiques, physique, mention : Très Bien</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <div class="bottom"></div>
             </div>
+        </div>
 <?php
     require_once('template_bottom.php');
 ?>

@@ -35,6 +35,8 @@ body{
     left: 0;
     background-color: #202020;
     position: fixed;
+    justify-content: left;
+    text-align: left;
     z-index: 1;
 }
 .centered{
