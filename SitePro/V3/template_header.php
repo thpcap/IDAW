@@ -6,7 +6,8 @@
             'cv'=> 'Cv',
             'projets'=> 'Projets',
             'contact'=> 'Contact', 
-            'erreur'=> 'Erreur'
+            'erreur'=> 'Erreur',
+            'connexion'=>"Connexion"
         );
         if(!array_key_exists($pageId,$mymenu)){
             $pageId='erreur';
@@ -16,7 +17,7 @@
         <html style=\"min-width: 700px;min-height: 900px;\">
             <head>
                 <title>".$mymenu[$pageId]."</title>
-                <link rel=\"icon\" href=\"logo.png\">
+                <link rel=\"icon\" href=\"images/logo.png\">
                 <meta charset=\"utf-8\">
                 <link rel=\"stylesheet\" href=\"css/menu.css\">";
 
@@ -27,12 +28,11 @@
                 );
                 if(array_search($_COOKIE["style"],$arraysCss)!=false){
                     $style=array_search($_COOKIE["style"],$arraysCss);
-                    echo $_COOKIE["style"];
                 }else{
                     $style="style1";
                 }
                 if(isset($_GET["css"])&&key_exists($_GET["css"],$arraysCss)){
-                    setcookie("style",$arraysCss[$_GET["css"]],time()+60*10);
+                    setcookie("style",$arraysCss[$_GET["css"]],time()+60*60*24*2);
                     //$style=$arraysCss[$_GET["css"]];
                     setcookie('refreshed',true);
                     if(key_exists('refreshed',$_COOKIE)){
@@ -40,8 +40,7 @@
                         setcookie('refreshed',"",time()-100);
                     }
                 }
-                echo $style;
-                echo "<link rel=\"stylesheet\" href=\"".$style.".css\"> 
+                echo "<link rel=\"stylesheet\" href=\"css/".$style.".css\"> 
                 
                 </head>
 
@@ -65,11 +64,12 @@
                             
                     echo "</ul>
                     </nav>
-                    <form style=\" margin:auto top: 20%; position:absolute; right:0;\" id=\"style_form\" action=\"index.php\" method=\"GET\" >
+                    <form style=\" top: 20%; position:absolute; right:0; margin-right: 8%;\" id=\"style_form\" action=\"index.php\" method=\"GET\" >
                         <select name=\"css\">
-                        <option value=\"style1\">style1</option>
-                        <option value=\"style2\">style2</option>
+                        <option value=\"style1\">Dark</option>
+                        <option value=\"style2\">Light</option>
                     </select>
+                        <br>
                         <input type=\"submit\" value=\"Appliquer\" />
                     </form>";
                     

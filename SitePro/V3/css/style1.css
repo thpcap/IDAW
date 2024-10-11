@@ -73,7 +73,7 @@ body{
     background-color: black;
     border-radius: 5px;
 }
-#bouttonContact{
+.boutton{
     text-decoration: none;
     color: black;
     border-radius: 10px;
