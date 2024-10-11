@@ -18,12 +18,12 @@
             }
             echo "<li><a href=\"index.php?page=".$pageId."&lang=".$lang."\"".$currentPage.">".$pageParameters."</a></li>";
         }
-        echo "</ul>\n</li>\n</ul>\n</nav>\n<h1 class=\"centered\" id=\"title\">";
+        echo "</ul>\n</li>\n</ul>\n</nav>\n<divclass=\"centered\" id=\"title\"><h1 id=\"titletext\">";
         if(array_key_exists($currentPageId,$mymenu)){
             echo $mymenu[$currentPageId];
         }else{
             echo 'Erreur';
         }
-        echo"</h1><h2 class=\"centered\" style=\"margin-right:20%; margin-top:1%;\">".$login."</h2>\n</div>\n<br>\n<div style=\"background-color: white; height: 1px; width: 100%; bottom: 0; position: absolute;\">\n</div>\n</div>";
+        echo"</h1><h2 id=\"loginH\">".$login."</h2></div>\n</div>\n<br>\n<div style=\"background-color: white; height: 1px; width: 100%; bottom: 0; position: absolute;\">\n</div>\n</div>";
     }
 ?>

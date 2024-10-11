@@ -25,10 +25,26 @@ body{
 }
 #title{
     flex: 1 1 50px;
-    font-size: xxx-large;
     text-align: center;
     display: block;
     margin: auto;
+}
+#loginH{
+    margin-top: 1px;
+}
+#titletext{
+    margin-bottom: 5px;
+    margin-top: 1%;
+}
+td input{
+    border-color: black;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+td input:focus{
+    border-color: black;
+    border-radius: 5px;
+    background-color: white;
 }
 .bottom{
     bottom: 0;

@@ -25,10 +25,16 @@ body{
 }
 #title{
     flex: 1 1 50px;
-    font-size: xxx-large;
     text-align: center;
     display: block;
     margin: auto;
+}
+#loginH{
+    margin-top: 1px;
+}
+#titletext{
+    margin-bottom: 5px;
+    margin-top: 1%;
 }
 .bottom{
     bottom: 0;
@@ -87,4 +93,16 @@ body{
 #bouttonContact:hover{
     background-color: rgb(69, 69, 69);
     border: 2px solid rgb(122, 122, 122);
+}
+td input{
+    border-color: black;
+    border-radius: 5px;
+    background-color: darkslategray;
+    color: white;
+}
+td input:focus{
+    border-color: black;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
 }

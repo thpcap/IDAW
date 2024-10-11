@@ -26,7 +26,7 @@
                     "style1"=>"style1",
                     "style2"=>"style2"
                 );
-                if(array_search($_COOKIE["style"],$arraysCss)!=false){
+                if(isset($_COOKIE["style"])&&array_search($_COOKIE["style"],$arraysCss)!=false){
                     $style=array_search($_COOKIE["style"],$arraysCss);
                 }else{
                     $style="style1";

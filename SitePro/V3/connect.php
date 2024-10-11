@@ -3,8 +3,8 @@
     // on simule une base de données
     $users = array(
         // login => password
-        'riri'=> 'fifi',
-        'yoda'=> 'maitrejedi');
+        'Thomas'=> 'CAPRON',
+        'Anakin'=> 'pasmaitrejedi');
     $login = "anonymous";
     $errorText = "";
     $successfullyLogged = false;
@@ -23,6 +23,7 @@
         echo $errorText;
     } else {
         $_SESSION['login']=$login;
+        $_SESSION['loged_in']=true;
     }
     header("Location: index.php");
     exit();

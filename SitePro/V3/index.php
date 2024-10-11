@@ -15,7 +15,6 @@
         $lang='fr';
     }
 
-
     //haut de page
     require_once("template_header.php");
     createHeader($currentPageId,$lang);
@@ -23,7 +22,7 @@
     if(isset($_SESSION)&&key_exists("login",$_SESSION)){
         renderMenuToHTML($currentPageId,$lang,$_SESSION['login']);
     }else 
-        renderMenuToHTML($currentPageId,$lang,"not loged");
+        renderMenuToHTML($currentPageId,$lang,"please log in");
     
 
     //contenu
@@ -32,7 +31,6 @@
         require_once($pageToInclude);
     else
         require_once($lang."/error_".$lang.".php");
-    echo $_SESSION['login'];
     //bas de page
     require_once("footer.php");
     createFooter($lang);
@@ -40,7 +38,7 @@
     if(isset($_GET["disconect"])){
         session_destroy();
         $_SESSION=[];
-        header("Location: index.php");
+        header("Location: index.php?lang=".$lang);
         exit();
     }
 ?>
