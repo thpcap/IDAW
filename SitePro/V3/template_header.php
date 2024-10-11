@@ -18,14 +18,38 @@
                 <title>".$mymenu[$pageId]."</title>
                 <link rel=\"icon\" href=\"logo.png\">
                 <meta charset=\"utf-8\">
-                <link rel=\"stylesheet\" href=\"css/styles.css\">
-                <link rel=\"stylesheet\" href=\"css/menu.css\">
-            </head>
-        <body>
-            <div id=\"top\" class=\"top\">
-                    <div class=\"flexbox\">
-                    <nav class=\"menu \" style=\"positon: absolute; right:0;\">
-                        <ul>";
+                <link rel=\"stylesheet\" href=\"css/menu.css\">";
+
+                $arraysCss=array(
+                    // form     cookie
+                    "style1"=>"style1",
+                    "style2"=>"style2"
+                );
+                if(array_search($_COOKIE["style"],$arraysCss)!=false){
+                    $style=array_search($_COOKIE["style"],$arraysCss);
+                    echo $_COOKIE["style"];
+                }else{
+                    $style="style1";
+                }
+                if(isset($_GET["css"])&&key_exists($_GET["css"],$arraysCss)){
+                    setcookie("style",$arraysCss[$_GET["css"]],time()+60*10);
+                    //$style=$arraysCss[$_GET["css"]];
+                    setcookie('refreshed',true);
+                    if(key_exists('refreshed',$_COOKIE)){
+                        header("Refresh:0");
+                        setcookie('refreshed',"",time()-100);
+                    }
+                }
+                echo $style;
+                echo "<link rel=\"stylesheet\" href=\"".$style.".css\"> 
+                
+                </head>
+
+                <body>
+                    <div id=\"top\" class=\"top\">
+                            <div class=\"flexbox\">
+                            <nav class=\"menu \" style=\"positon: absolute; right:0;\">
+                                <ul>";
         
         $langArr=array(
             'en'=>"images/UK-flag-png-xl.png\" width=20px alt=\"\"> English",
@@ -40,6 +64,14 @@
         }
                             
                     echo "</ul>
-                    </nav>";
+                    </nav>
+                    <form style=\" margin:auto top: 20%; position:absolute; right:0;\" id=\"style_form\" action=\"index.php\" method=\"GET\" >
+                        <select name=\"css\">
+                        <option value=\"style1\">style1</option>
+                        <option value=\"style2\">style2</option>
+                    </select>
+                        <input type=\"submit\" value=\"Appliquer\" />
+                    </form>";
+                    
     }
 ?>

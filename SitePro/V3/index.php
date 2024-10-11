@@ -19,6 +19,7 @@
     createHeader($currentPageId,$lang);
     require_once("template_menu.php");
     renderMenuToHTML($currentPageId,$lang);
+    
 
     //contenu
     $pageToInclude =$lang."/".$currentPageId ."_".$lang.".php";
