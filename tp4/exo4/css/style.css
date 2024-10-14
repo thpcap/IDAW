@@ -1,0 +1,18 @@
+.tableform > td, .tableform >th {
+    border: 0;
+}
+.tableform{
+    border: 0;
+    border: black solid 2px;
+}
+.tableDb{
+    border-collapse: collapse;
+    border: black solid 2px;
+}
+.tableDb :is(th, td){
+    border: 1px solid black;
+}
+
+input{
+    margin: 0;
+}
