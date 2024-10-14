@@ -41,15 +41,19 @@
     }else{
         renderMenuToHTML($currentPageId,$lang,"please log in");
     }
-    //contenu
-    $pageToInclude =$lang."/".$currentPageId ."_".$lang.".php";
-    if(is_readable($pageToInclude))
-        require_once($pageToInclude);
-    else
-        require_once($lang."/error_".$lang.".php");
-    //bas de page
-    require_once("footer.php");
-    createFooter($lang);
+    if(isset($_SESSION['loged_in'])){//contenu
+        $pageToInclude =$lang."/".$currentPageId ."_".$lang.".php";
+        if(is_readable($pageToInclude))
+            require_once($pageToInclude);
+        else
+            require_once($lang."/error_".$lang.".php");
+    }else{
+        require_once($lang."/connect_".$lang.".php");
+    }
+        //bas de page
+        require_once("footer.php");
+        createFooter($lang);
+    
 
     if(isset($_GET["disconect"])){
         session_unset();
