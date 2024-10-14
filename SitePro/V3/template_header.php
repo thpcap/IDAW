@@ -31,15 +31,6 @@
                 }else{
                     $style="style1";
                 }
-                if(isset($_GET["css"])&&key_exists($_GET["css"],$arraysCss)){
-                    setcookie("style",$arraysCss[$_GET["css"]],time()+60*60*24*2);
-                    //$style=$arraysCss[$_GET["css"]];
-                    setcookie('refreshed',true);
-                    if(key_exists('refreshed',$_COOKIE)){
-                        header("Refresh:0");
-                        setcookie('refreshed',"",time()-100);
-                    }
-                }
                 echo "<link rel=\"stylesheet\" href=\"css/".$style.".css\"> 
                 
                 </head>
@@ -66,8 +57,8 @@
                     </nav>
                     <form style=\" top: 20%; position:absolute; right:0; margin-right: 8%;\" id=\"style_form\" action=\"index.php\" method=\"GET\" >
                         <select name=\"css\">
-                        <option value=\"style1\">Dark</option>
-                        <option value=\"style2\">Light</option>
+                        <option value=\"style1\"";if($style=="style1"){echo"id=\"selectedStyle\"";}echo">Dark</option>
+                        <option value=\"style2\"";if($style=="style2"){echo"id=\"selectedStyle\"";}echo">Light</option>
                     </select>
                         <br>
                         <input type=\"submit\" value=\"Appliquer\" />

@@ -64,3 +64,11 @@ nav > ul li:hover .sous{
     font-size: 12px;
     
 }
+#selectedStyle{
+    background-color: gray;
+    border: 2px solid black;
+}
+select{
+    border-radius: 5px;
+    border: 2px solid black;
+}
