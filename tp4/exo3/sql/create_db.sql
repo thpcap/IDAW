@@ -1,5 +1,4 @@
-DROP table if EXISTS users;
---destruction de la table
+
 
 -- phpMyAdmin SQL Dump
 -- version 4.5.4.1
@@ -28,6 +27,9 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `users`
 --
+
+DROP table if EXISTS users;
+-- destruction de la table
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,

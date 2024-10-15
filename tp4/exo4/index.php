@@ -11,8 +11,10 @@
             <input name="Delete" type="hidden">
             <table class="tableDb">
                 <?php
+                
                     require_once('config.php');
                     $connectionString = "mysql:host=". _MYSQL_HOST;
+                    
                     if(defined('_MYSQL_PORT'))
                         $connectionString .= ";port=". _MYSQL_PORT;
                     $connectionString .= ";dbname=" . _MYSQL_DBNAME;
@@ -42,8 +44,8 @@
                         }
                     }
                     $sql = 'select * from users';
-                    $request = $pdo->query($sql);
                     
+                    $request = $pdo->query($sql);
                     $allUsers = $request->fetchAll(PDO::FETCH_CLASS,'User');
                 ?>
                 <thead>
@@ -149,8 +151,6 @@
             //requete post pour supprimer un User
             if(isset($_POST["Delete"])&&isset($_POST["id"])){
                 $id=$_POST["id"];
-                
-                //TODO ajouter dans la base les données
                 require_once('config.php');
                 $connectionString = "mysql:host=". _MYSQL_HOST;
                 if(defined('_MYSQL_PORT'))
@@ -173,7 +173,6 @@
             //requete post pour modifier un User
             if(isset($_POST["Update"])&&isset($_POST["id"])){
                 $id=$_POST["id"];                
-                //TODO ajouter dans la base les données
                 require_once('config.php');
                 $connectionString = "mysql:host=". _MYSQL_HOST;
                 if(defined('_MYSQL_PORT'))
@@ -203,7 +202,6 @@
                 }else{
                     $email=$_POST["email"];
                 }
-
                 $querry="UPDATE `users` SET `id`=".$id.", `name` = '".$name."', `email` ='".$email."' WHERE `users`.`id` =".$id;
                 $pdo->query($querry);
                 $pdo=null;
