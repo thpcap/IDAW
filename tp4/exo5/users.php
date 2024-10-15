@@ -84,9 +84,9 @@
             exit(json_encode($result));
 
         case 'POST':
-            
-            if(isset($_POST['add'])&&isset($_POST['name'])&&isset($_POST['email'])){
-                $res=add_users($pdo,$_POST['name'],$_POST['email']);
+            $data=json_decode(file_get_contents("php://input"));
+            if(isset($data->name)&&isset($data->email)){
+                $res=add_users($pdo,$data->name,$data->email);
                 if($res!="error"){
                     setHeaders();
                     http_response_code(201);
@@ -98,13 +98,17 @@
                     exit(-1);
                 }
             }
-            
-            if(isset($_POST['delete'])&&isset($_POST['id'])){
-                delete_users($pdo,$_POST['id']);
+            http_response_code(501);
+            exit(-1);
+        case 'DELETE':
+            $data=json_decode(file_get_contents("php://input"));
+            if(isset($data->id){
+                delete_users($pdo,$data->id);
                 http_response_code(200);
                 exit(-1);
             }
-            
+            http_response_code(501);
+            exit(-1);
             
             if(isset($_POST["update"])&&isset($_POST["id"])&&isset($_POST['name'])&&isset($_POST['email'])){
                 $id=$_POST["id"];                
