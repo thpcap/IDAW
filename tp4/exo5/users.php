@@ -102,21 +102,22 @@
             exit(-1);
         case 'DELETE':
             $data=json_decode(file_get_contents("php://input"));
-            if(isset($data->id){
+            if(isset($data->id)){
                 delete_users($pdo,$data->id);
                 http_response_code(200);
                 exit(-1);
             }
             http_response_code(501);
             exit(-1);
-            
-            if(isset($_POST["update"])&&isset($_POST["id"])&&isset($_POST['name'])&&isset($_POST['email'])){
-                $id=$_POST["id"];                
-                $name=$_POST["name"];
-                $email=$_POST["email"];
+        case 'PATCH':
+            $data=json_decode(file_get_contents("php://input"));
+            if(isset($data->id)&&isset($data->name)&&isset($data->email)){
+                $id=$data->id;                
+                $name=$data->name;
+                $email=$data->email;
                 $res=update_users($pdo,$id,$name,$email);
                 http_response_code(200);
-                exit(exit(json_encode($res)));
+                exit(json_encode($res));
             }
             http_response_code(501);
             exit(-1);
