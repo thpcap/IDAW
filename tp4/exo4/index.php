@@ -172,10 +172,7 @@
             }
             //requete post pour modifier un User
             if(isset($_POST["Update"])&&isset($_POST["id"])){
-                $id=$_POST["id"];
-                $name=$_POST["name"];
-                $email=$_POST["email"];
-                
+                $id=$_POST["id"];                
                 //TODO ajouter dans la base les données
                 require_once('config.php');
                 $connectionString = "mysql:host=". _MYSQL_HOST;
@@ -191,6 +188,22 @@
                 catch (PDOException $erreur) {
                     echo 'Erreur : '.$erreur->getMessage();
                 }
+                //remplissage des champs name et email si non donnés
+                if($_POST["name"]==""){
+                    $sql = 'select `name` from users WHERE `users`.`id`='.$id;
+                    $request = $pdo->query($sql);
+                    $name = $request->fetch()[0];
+                }else{
+                    $name=$_POST["name"];
+                }
+                if($_POST["email"]==""){
+                    $sql = 'select `email` from users WHERE `users`.`id`='.$id;
+                    $request = $pdo->query($sql);
+                    $email = $request->fetch()[0];
+                }else{
+                    $email=$_POST["email"];
+                }
+
                 $querry="UPDATE `users` SET `id`=".$id.", `name` = '".$name."', `email` ='".$email."' WHERE `users`.`id` =".$id;
                 $pdo->query($querry);
                 $pdo=null;

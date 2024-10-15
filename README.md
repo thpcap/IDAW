@@ -5,3 +5,4 @@ login and passwords
 'Thomas'=> 'CAPRON',
 'Anakin'=> 'pasmaitrejedi'
 N.B.2 TP3 integreated in the sitepro V3
+wordpress id: WordPress password:W0rdPr355
