@@ -66,6 +66,10 @@
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary form-control">Submit</button>
                 </div>
+                <div class="col-sm-2">
+                    <input type="reset" value="Reset">
+                </div>
+               
             </div>
         </form>
         <script>
@@ -78,22 +82,30 @@
                 let date = $("#inputDate").val();
                 let AimeLeCoursDeWeb = $("#AimeLeCoursDeWeb").is(':checked');
                 let remarques = $("#Remarques").val();
+
+                //TODO requete ajax pour envoyer le student
+
                 $("#studentsTableBody").append(`
-                    <tr id="student${id}"><td>${nom}</td>\n
-                        <td>${prenom}</td>\n
-                        <td>${date}</td>\n
-                        <td>${AimeLeCoursDeWeb}</td>\n
-                        <td>${remarques}</td>\n
+                    <tr id="student${id}">\n
+                        <td id="nom${id}">${nom}</td>\n
+                        <td id="prenom${id}">${prenom}</td>\n
+                        <td id="date${id}">${date}</td>\n
+                        <td id="AimeLeCoursDeWeb${id}">${AimeLeCoursDeWeb}</td>\n
+                        <td id="remarques${id}">${remarques}</td>\n
                         <td>\n
-                            <form id="deleteStudentForm" onsubmit="onDeleteFormSubmit();">\n
-                                <input type="hidden" name="id" value="student${id}">\n
+                            <form class="deleteStudentForm" onsubmit="onDeleteFormSubmit();">\n
+                                <input type="hidden" name="id" value="${id}">\n
                                 <input type="submit" value="delete">\n
                             </form>\n
                         </td>\n
                         <td>\n
-
+                            <form class="ModifyStudentForm" onsubmit="onModifyButtonSubmit();">\n
+                                <input type="hidden" name="id" value="${id}">\n
+                                <input type="submit" value="Modify">\n
+                            </form>\n
                         </td>\n
-                    </tr>`);
+                    </tr>
+                `);
                 id++;
             }
             
@@ -101,9 +113,51 @@
                 // prevent the form to be sent to the server
                 event.preventDefault();
                 let stdid=$("input[name='id']").val();
-                $("#"+stdid).remove();
+                $("#student"+stdid).remove();
             }
+
+            function onModifyButtonSubmit(){
+                // prevent the form to be sent to the server
+                event.preventDefault();
+                let id=$("input[name='id']").val();
+                let nom = $("#nom"+id).val();
+                let prenom = $("#prenom"+id).val();
+                let date = $("#date"+id).val();
+                let AimeLeCoursDeWeb = $("#AimeLeCoursDeWeb"+id).val();
+                if(AimeLeCoursDeWeb=="true"){
+                    AimeLeCoursDeWeb="checked";
+                }else{
+                    AimeLeCoursDeWeb="";
+                }
+                let remarques = $("#remarques"+id).val();
+                let data=`
+                            <form class="UpdateStudentForm" onsubmit="onUpdateFormSubmit()"";>
+                                <td><input type="text" class="form-control" id="inputNom" value="${nom}"></td>\n
+                                <td><input type="text" class="form-control" id="inputPrenom" value="${prenom}"></td>\n
+                                <td><input type="date" class="form-control" id="inputDate" value="${date}"></td>\n
+                                <td><input type="checkbox" class="form-control" id="AimeLeCoursDeWeb" ${AimeLeCoursDeWeb}></td>\n
+                                <td><input type="text" class="form-control" id="Remarques" value="${remarques}"></td>\n
+                                <td>\n
+                                    <form id="deleteStudentForm" onsubmit="onDeleteFormSubmit();">\n
+                                        <input type="hidden" name="id" value="${id}">\n
+                                        <input type="submit" value="delete">\n
+                                    </form>\n
+                                </td>\n
+                                <td>\n
+                                    <input type="hidden" name="id" value="${id}">\n
+                                    <input type="submit" value="Modify">\n
+                                </td>\n
+                            </form>
+                            `;
+                $("#student"+id).empty();   
+                alert(id);
+                $("#student"+id).append(data);
+            }
+            
         </script>
         
+        
+
+
     </body>
 </html>
