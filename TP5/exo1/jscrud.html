@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <title>tabletest</title>
+        <style>
+            body{
+                margin-top: 5em;
+            }
+            .table {
+                margin-top: 100px;
+                margin-bottom: 100px;
+                border: 1px solid black;
+            }
+            .table>thead>tr>th{
+                border: 1px solid black;
+            }
+            .table>tbody>tr>td{
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Date de naissance</th>
+                    <th scope="col">Aime le cours Web</th>
+                    <th scope="col">Remarques</th>
+                    <th scope="col">CRUD</th>
+                </tr>
+            </thead>
+            <tbody id="studentsTableBody">
+                
+            </tbody>
+        </table>
+        <form id="addStudentForm" action="" onsubmit="onCreateFormSubmit();">
+            <div class="form-group row">
+                <label for="inputNom" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="inputNom" >
+                </div>
+                <label for="inputPrenom" class="col-sm-2 col-form-label">Prénom</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="inputPrenom" >
+                </div>
+                <label for="inputDate" class="col-sm-2 col-form-label">Date de naissance</label>
+                <div class="col-sm-3">
+                    <input type="date" class="form-control" id="inputDate" >
+                </div>
+                <label for="AimeLeCoursDeWeb" class="col-sm-2 col-form-label">Aime Le Cours De Web?</label>
+                <div class="col-sm-3">
+                    <input type="checkbox" class="form-control" id="AimeLeCoursDeWeb" checked>
+                </div>
+                <label for="Remarques" class="col-sm-2 col-form-label">Remarques</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="Remarques">
+                </div>
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-2"></span>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary form-control">Submit</button>
+                </div>
+            </div>
+        </form>
+        <script>
+            var id=0;
+            function onCreateFormSubmit() {
+                // prevent the form to be sent to the server
+                event.preventDefault();
+                let nom = $("#inputNom").val();
+                let prenom = $("#inputPrenom").val();
+                let date = $("#inputDate").val();
+                let AimeLeCoursDeWeb = $("#AimeLeCoursDeWeb").is(':checked');
+                let remarques = $("#Remarques").val();
+                $("#studentsTableBody").append(`
+                    <tr id="student${id}"><td>${nom}</td>\n
+                        <td>${prenom}</td>\n
+                        <td>${date}</td>\n
+                        <td>${AimeLeCoursDeWeb}</td>\n
+                        <td>${remarques}</td>\n
+                        <td>\n
+                            <form id="deleteStudentForm" onsubmit="onDeleteFormSubmit();">\n
+                                <input type="hidden" name="id" value="student${id}">\n
+                                <input type="submit" value="delete">\n
+                            </form>\n
+                        </td>\n
+                        <td>\n
+
+                        </td>\n
+                    </tr>`);
+                id++;
+            }
+            
+            function onDeleteFormSubmit() {
+                // prevent the form to be sent to the server
+                event.preventDefault();
+                let stdid=$("input[name='id']").val();
+                $("#"+stdid).remove();
+            }
+        </script>
+        
+    </body>
+</html>
