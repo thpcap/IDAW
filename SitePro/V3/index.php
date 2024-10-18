@@ -41,7 +41,7 @@
     }else{
         renderMenuToHTML($currentPageId,$lang,"please log in");
     }
-    if(isset($_SESSION['loged_in'])){//contenu
+    if(true||isset($_SESSION['loged_in'])){//contenu
         $pageToInclude =$lang."/".$currentPageId ."_".$lang.".php";
         if(is_readable($pageToInclude))
             require_once($pageToInclude);
