@@ -46,7 +46,7 @@
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="inputNom" >
                 </div>
-                <label for="inputEmail" class="col-sm-2 col-form-label">Prénom</label>
+                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-3">
                     <input type="text" class="form-control" id="inputEmail" >
                 </div>
@@ -63,97 +63,163 @@
             </div>
         </form>
         <script>
-            //$(document).ready(function(){
-                function onCreateFormSubmit() {
-                    // prevent the form to be sent to the server
-                    event.preventDefault();
-                    let nom = $("#inputNom").val();
-                    let email = $("#inputEmail").val();
-
-                    if(nom!=""){
-                        //TODO requete ajax pour envoyer les user
-
-
-
-                            $("#usersTableBody").append(`
-                                <tr id="user${id}">\n
-                                    <td id="nom${id}">${nom}</td>\n
-                                    <td id="email${id}">${email}</td>\n
-                                    <td>\n
-                                        <form class="deleteUserForm" onsubmit="onDeleteFormSubmit(${id});">\n
-                                            <input type="submit" value="delete">\n
-                                        </form>\n
-                                    </td>\n
-                                    <td>\n
-                                        <form class="ModifyUserForm" onsubmit="onModifyButtonSubmit(${id});">\n
-                                            <input type="submit" class="modifyS" value="Modify">\n
-                                        </form>\n
-                                    </td>\n
-                                </tr>
-                            `);
-                            $('#addUserForm')[0].reset();
-                            
-                    }else{
-                        $("#labelNom").attr("style","background-color: red;");
-                        alert("j'ai dit que le nom est obligatoire");
-                    }
-                }
+            function User(name=null, email=null, id=null) {
+                if(id!=null)this.id = id;
+                if(name!=null)this.name = name;
+                if(email!=null)this.email = email;
+            }
+            $(document).ready(function(){
                 
-                function onDeleteFormSubmit(stdid) {
-                    // prevent the form to be sent to the server
-                    event.preventDefault();
-                    $("#user"+stdid).remove();
-                }
+                let res=$.ajax({
+                    url: "http://localhost/IDAW/tp4/exo5/users.php",
+                    method: "GET",
+                    dataType: "json"
+                    
+                }).done(function(reponse){
+                    reponse.forEach(user => {
+                        let id=user.id;
+                        let name=user.name;
+                        let email=user.email;
+                        $("#usersTableBody").append(`
+                            <tr id="user${id}">\n
+                                <td id="name${id}">${name}</td>\n
+                                <td id="email${id}">${email}</td>\n
+                                <td>\n
+                                    <form class="deleteUserForm" onsubmit="onDeleteFormSubmit(${id});">\n
+                                        <input type="submit" value="delete">\n
+                                    </form>\n
+                                </td>\n
+                                <td>\n
+                                    <form class="ModifyUserForm" onsubmit="onModifyButtonSubmit(${id});">\n
+                                        <input type="submit" class="modifyS" value="Modify">\n
+                                    </form>\n
+                                </td>\n
+                            </tr>
+                        `);
+                    });
+                });
+                    
 
-                function onModifyButtonSubmit(idm){
-                    // prevent the form to be sent to the server
-                    event.preventDefault();
-                    let nom = $("#nom"+idm).text();
-                    let email = $("#email"+idm).text();
-                    let data=`
-                        <td><input type="text" class="form-control" id="inputNom2" value="${nom}"></td>\n
-                        <td><input type="text" class="form-control" id="inputEmail2" value="${email}"></td>\n
-                        <td>\n
-                            <form id="deleteUserForm" onsubmit="onDeleteFormSubmit(${idm});">\n
-                                <input type="submit" value="delete">\n
-                            </form>\n
-                        </td>\n
-                        <td>\n
-                            <input type="submit" value="Update">\n
-                        </td>\n
-                    `;
-                    $(".UpdateUserForm").attr("onsubmit",`onUpdateFormSubmit(${idm});`);
-                    $("#user"+idm).empty();
-                    $(".modifyS").hide();
-                    $("#user"+idm).append(data);
+            });
+            function onCreateFormSubmit() {
+                // prevent the form to be sent to the server
+                event.preventDefault();
+                let inNom = $("#inputNom").val();
+                let inEmail = $("#inputEmail").val();
+                let user= new User(inNom,inEmail);
+                if(inNom!=""){
+                    $.ajax({
+                        url: "http://localhost/IDAW/tp4/exo5/users.php",
+                        method: "POST",
+                        dataType: "json",
+                        data:JSON.stringify(user),
+                        contentType: "application/json"
+                    }).done(function(reponse){
+                        let id=reponse.id;
+                        let name=reponse.name;
+                        let email=reponse.email;
+                        $("#usersTableBody").append(`
+                            <tr id="user${id}">\n
+                                <td id="name${id}">${name}</td>\n
+                                <td id="email${id}">${email}</td>\n
+                                <td>\n
+                                    <form class="deleteUserForm" onsubmit="onDeleteFormSubmit(${id});">\n
+                                        <input type="submit" value="delete">\n
+                                    </form>\n
+                                </td>\n
+                                <td>\n
+                                    <form class="ModifyUserForm" onsubmit="onModifyButtonSubmit(${id});">\n
+                                        <input type="submit" class="modifyS" value="Modify">\n
+                                    </form>\n
+                                </td>\n
+                            </tr>
+                        `);
+                        $('#addUserForm')[0].reset();
+                    });
+                }else{
+                    $("#labelNom").attr("style","background-color: red;");
+                    alert("j'ai dit que le name est obligatoire");
                 }
-                
-                function onUpdateFormSubmit(idu){
-                    // prevent the form to be sent to the server
-                    event.preventDefault();
-                    //let idu= $("input[name='idm']").val();
-                    let nom = $("#inputNom2").val();
-                    let email = $("#inputEmail2").val();
+            }
+            
+            function onDeleteFormSubmit(idD) {
+                // prevent the form to be sent to the server
+                event.preventDefault();
+                let user= new User(null,null,idD);
+                $.ajax({
+                    url: "http://localhost/IDAW/tp4/exo5/users.php",
+                    method: "DELETE",
+                    dataType: "json",
+                    data:JSON.stringify(user),
+                    contentType: "application/json"
+                }).done(function(reponse){
+                    let id=reponse.id;
+                    $("#user"+id).remove();
+                });                
+            }
+
+            function onModifyButtonSubmit(idm){
+                // prevent the form to be sent to the server
+                event.preventDefault();
+                let name = $("#name"+idm).text();
+                let email = $("#email"+idm).text();
+                let data=`
+                    <td><input type="text" class="form-control" id="inputNom2" value="${name}"></td>\n
+                    <td><input type="text" class="form-control" id="inputEmail2" value="${email}"></td>\n
+                    <td>\n
+                        <form id="deleteUserForm" onsubmit="onDeleteFormSubmit(${idm});">\n
+                            <input type="submit" value="delete">\n
+                        </form>\n
+                    </td>\n
+                    <td>\n
+                        <input type="submit" value="Update">\n
+                    </td>\n
+                `;
+                $(".UpdateUserForm").attr("onsubmit",`onUpdateFormSubmit(${idm});`);
+                $("#user"+idm).empty();
+                $(".modifyS").hide();
+                $("#user"+idm).append(data);
+            }
+            
+            function onUpdateFormSubmit(idu){
+                // prevent the form to be sent to the server
+                event.preventDefault();
+                //let idu= $("input[name='idm']").val();
+                let name = $("#inputNom2").val();
+                let email = $("#inputEmail2").val();
+                let user=new User(name,email,idu);
+                $.ajax({
+                    url: "http://localhost/IDAW/tp4/exo5/users.php",
+                    method: "PUT",
+                    dataType: "json",
+                    data:JSON.stringify(user),
+                    contentType: "application/json"
+                }).done(function(reponse){
+                    let id=reponse.id;
+                    let name=reponse.name;
+                    let email=reponse.email;
                     data=`
-                        <td id="nom${idu}">${nom}</td>\n
-                        <td id="email${idu}">${email}</td>\n
-                        <td>\n
-                            <form class="deleteUserForm" onsubmit="onDeleteFormSubmit(${idu});">\n
-                                <input type="submit" value="delete">\n
-                            </form>\n
-                        </td>\n
-                        <td>\n
-                            <form class="ModifyUserForm" onsubmit="onModifyButtonSubmit(${idu});">\n
-                                <input type="submit" class="modifyS" value="Modify">\n
-                            </form>\n
-                        </td>\n
+                    <td id="name${id}">${name}</td>\n
+                    <td id="email${id}">${email}</td>\n
+                    <td>\n
+                        <form class="deleteUserForm" onsubmit="onDeleteFormSubmit(${id});">\n
+                            <input type="submit" value="delete">\n
+                        </form>\n
+                    </td>\n
+                    <td>\n
+                        <form class="ModifyUserForm" onsubmit="onModifyButtonSubmit(${id});">\n
+                            <input type="submit" class="modifyS" value="Modify">\n
+                        </form>\n
+                    </td>\n
                     `;
                     $(".UpdateUserForm").removeAttr("onsubmit");
-                    $("#user"+idu).empty();
+                    $("#user"+id).empty();
                     $(".modifyS").show();
-                    $("#user"+idu).append(data);
-                }
-            //});
+                    $("#user"+id).append(data);
+                });
+
+                
+            }
         </script>
     </body>
 </html>

@@ -164,23 +164,23 @@
 
         case 'DELETE':
             $data=json_decode(file_get_contents("php://input"));
+            if(isset($data->id)){
                 if(!testId($pdo,$data->id)){
                     http_response_code(404);
                     exit(-1);
                 }
-            if(isset($data->id)){
                 if(delete_users($pdo,$data->id)===false){
                     http_response_code(500);
                     exit(-1);
                 }
-                
+                setHeaders();
                 http_response_code(200);
-                exit("deletion sucessfull");
+                exit(json_encode($data));
             }
             http_response_code(400);
             exit(-1);
 
-        case 'PATCH':
+        case 'PUT':
             $data=json_decode(file_get_contents("php://input"));
             if(isset($data->id)&&isset($data->name)&&isset($data->email)){
                 $id=$data->id;                
