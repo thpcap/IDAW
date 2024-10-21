@@ -27,10 +27,13 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="7">Table Stundents</th>
+                        <form id="reload" onsubmit="reloadTable();">
+                            <th><input type="submit" value="Reload"></th>
+                        </form>
+                        <th scope="col" colspan="6">Table Stundents</th>
                     </tr>
                     <tr>
-                        <th scope="col">Name</th>
+                        <th scope="col">Nom</th>
                         <th scope="col">Email</th>
                         <th scope="col" colspan="2">CRUD</th>
                     </tr>
@@ -48,7 +51,7 @@
                 </div>
                 <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="inputEmail" >
+                    <input type="email" class="form-control" id="inputEmail" >
                 </div>
             </div>
             <div class="form-group row" style="display: flex;">
@@ -63,19 +66,21 @@
             </div>
         </form>
         <script>
+            //utilise l'API du TP4
             function User(name=null, email=null, id=null) {
                 if(id!=null)this.id = id;
                 if(name!=null)this.name = name;
                 if(email!=null)this.email = email;
             }
-            $(document).ready(function(){
-                
-                let res=$.ajax({
+            $(document).ready(reloadTable());
+            function reloadTable(){
+                let request=$.ajax({
                     url: "http://localhost/IDAW/tp4/exo5/users.php",
                     method: "GET",
-                    dataType: "json"
-                    
-                }).done(function(reponse){
+                    dataType: "json" 
+                });
+                request.done(function(reponse){
+                    $("#usersTableBody").empty();
                     reponse.forEach(user => {
                         let id=user.id;
                         let name=user.name;
@@ -98,9 +103,11 @@
                         `);
                     });
                 });
-                    
-
-            });
+                request.fail(function(xhr, status, error){
+                    console.log("Erreur AJAX", xhr.status, xhr.responseText, error);
+                    alert("Erreur " + xhr.status + ": " + xhr.responseText);
+                });
+            }
             function onCreateFormSubmit() {
                 // prevent the form to be sent to the server
                 event.preventDefault();
@@ -108,13 +115,14 @@
                 let inEmail = $("#inputEmail").val();
                 let user= new User(inNom,inEmail);
                 if(inNom!=""){
-                    $.ajax({
+                    let request=$.ajax({
                         url: "http://localhost/IDAW/tp4/exo5/users.php",
                         method: "POST",
                         dataType: "json",
                         data:JSON.stringify(user),
                         contentType: "application/json"
-                    }).done(function(reponse){
+                    });
+                    request.done(function(reponse){
                         let id=reponse.id;
                         let name=reponse.name;
                         let email=reponse.email;
@@ -136,9 +144,13 @@
                         `);
                         $('#addUserForm')[0].reset();
                     });
+                    request.fail(function(xhr, status, error){
+                        console.log("Erreur AJAX", xhr.status, xhr.responseText, error);
+                        alert("Erreur " + xhr.status + ": " + xhr.responseText);
+                    });
                 }else{
                     $("#labelNom").attr("style","background-color: red;");
-                    alert("j'ai dit que le name est obligatoire");
+                    alert("j'ai dit que le nom est obligatoire");
                 }
             }
             
@@ -146,16 +158,22 @@
                 // prevent the form to be sent to the server
                 event.preventDefault();
                 let user= new User(null,null,idD);
-                $.ajax({
+                let request=$.ajax({
                     url: "http://localhost/IDAW/tp4/exo5/users.php",
                     method: "DELETE",
                     dataType: "json",
                     data:JSON.stringify(user),
                     contentType: "application/json"
-                }).done(function(reponse){
+                });
+                request.done(function(reponse){
                     let id=reponse.id;
                     $("#user"+id).remove();
-                });                
+                    $(".modifyS").show();
+                });
+                request.fail(function(xhr, status, error){
+                    console.log("Erreur AJAX", xhr.status, xhr.responseText, error);
+                    alert("Erreur " + xhr.status + ": " + xhr.responseText);
+                });            
             }
 
             function onModifyButtonSubmit(idm){
@@ -165,7 +183,7 @@
                 let email = $("#email"+idm).text();
                 let data=`
                     <td><input type="text" class="form-control" id="inputNom2" value="${name}"></td>\n
-                    <td><input type="text" class="form-control" id="inputEmail2" value="${email}"></td>\n
+                    <td><input type="email" class="form-control" id="inputEmail2" value="${email}"></td>\n
                     <td>\n
                         <form id="deleteUserForm" onsubmit="onDeleteFormSubmit(${idm});">\n
                             <input type="submit" value="delete">\n
@@ -184,41 +202,48 @@
             function onUpdateFormSubmit(idu){
                 // prevent the form to be sent to the server
                 event.preventDefault();
-                //let idu= $("input[name='idm']").val();
                 let name = $("#inputNom2").val();
                 let email = $("#inputEmail2").val();
                 let user=new User(name,email,idu);
-                $.ajax({
-                    url: "http://localhost/IDAW/tp4/exo5/users.php",
-                    method: "PUT",
-                    dataType: "json",
-                    data:JSON.stringify(user),
-                    contentType: "application/json"
-                }).done(function(reponse){
-                    let id=reponse.id;
-                    let name=reponse.name;
-                    let email=reponse.email;
-                    data=`
-                    <td id="name${id}">${name}</td>\n
-                    <td id="email${id}">${email}</td>\n
-                    <td>\n
-                        <form class="deleteUserForm" onsubmit="onDeleteFormSubmit(${id});">\n
-                            <input type="submit" value="delete">\n
-                        </form>\n
-                    </td>\n
-                    <td>\n
-                        <form class="ModifyUserForm" onsubmit="onModifyButtonSubmit(${id});">\n
-                            <input type="submit" class="modifyS" value="Modify">\n
-                        </form>\n
-                    </td>\n
-                    `;
-                    $(".UpdateUserForm").removeAttr("onsubmit");
-                    $("#user"+id).empty();
-                    $(".modifyS").show();
-                    $("#user"+id).append(data);
-                });
-
-                
+                if(User.name.trim()==""){
+                    $("#inputNom2").attr("style","background-color: red;");
+                    alert("j'ai dit que le Nom est obligatoire");
+                }else{
+                    let request=$.ajax({
+                        url: "http://localhost/IDAW/tp4/exo5/users.php",
+                        method: "PUT",
+                        dataType: "json",
+                        data:JSON.stringify(user),
+                        contentType: "application/json"
+                    });
+                    request.done(function(reponse){
+                        let id=reponse.id;
+                        let name=reponse.name;
+                        let email=reponse.email;
+                        data=`
+                        <td id="name${id}">${name}</td>\n
+                        <td id="email${id}">${email}</td>\n
+                        <td>\n
+                            <form class="deleteUserForm" onsubmit="onDeleteFormSubmit(${id});">\n
+                                <input type="submit" value="delete">\n
+                            </form>\n
+                        </td>\n
+                        <td>\n
+                            <form class="ModifyUserForm" onsubmit="onModifyButtonSubmit(${id});">\n
+                                <input type="submit" class="modifyS" value="Modify">\n
+                            </form>\n
+                        </td>\n
+                        `;
+                        $(".UpdateUserForm").removeAttr("onsubmit");
+                        $("#user"+id).empty();
+                        $(".modifyS").show();
+                        $("#user"+id).append(data);
+                    });
+                    request.fail(function(xhr, status, error){
+                        console.log("Erreur AJAX", xhr.status, xhr.responseText, error);
+                        alert("Erreur " + xhr.status + ": " + xhr.responseText);
+                    });
+                }
             }
         </script>
     </body>

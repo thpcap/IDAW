@@ -1,8 +1,23 @@
 <?php
     require_once("init_pdo.php");  
-    
+    function escape_special_characters($string) {
+        // Liste des caractères spéciaux à échapper
+        $special_characters = "\0\n\r\t\\'\"\x1a\|\&\`\#"; // Caractères spéciaux communs
+        // On utilise addcslashes pour ajouter des \ devant les caractères spéciaux
+        return addcslashes($string, $special_characters);
+    }
+    function unescape_special_characters_in_object($object) {
+        foreach ($object as $key => $value) {
+            if (is_string($value)) {
+                // Appliquer stripslashes uniquement sur les propriétés qui sont des chaînes de caractères
+                $object->$key = stripslashes($value);
+            }
+        }
+        return $object;
+    }
     function testId($db,$id){
-        $sql = "SELECT * FROM USERS WHERE `id`=".$id;
+        $id=escape_special_characters($id);
+        $sql = "SELECT `id` FROM USERS WHERE `id`=".$id;
         try {
             $exe = $db->query($sql);
             $exe=$exe->fetch();
@@ -26,9 +41,11 @@
             exit(-1);
         }
         $res = $exe->fetchAll(PDO::FETCH_OBJ);
+        $res=unescape_special_characters_in_object($res);
         return $res;
     }
     function get_one_user($db,$id){
+        $id=escape_special_characters($id);
         $sql = "SELECT * FROM USERS WHERE `id`=".$id;
         try {
             $exe = $db->query($sql);
@@ -39,6 +56,7 @@
             exit(-1);
         }
         $res = $exe->fetchAll(PDO::FETCH_OBJ);
+        $res=unescape_special_characters_in_object($res);
         return $res;
     }
     function setHeaders() {
@@ -47,6 +65,8 @@
         header('Content-type: application/json; charset=utf-8');
     }
     function add_users( $db , $name , $email){
+        $name=escape_special_characters($name);
+        $email=escape_special_characters($email);
         $sql = "INSERT INTO `users` (`id`, `name`, `email`) VALUES (NULL,'".$name."', '".$email."')"; 
         try {
             $exe = $db->query($sql);
@@ -67,9 +87,11 @@
             exit(-1);
         }
         $res = $exe->fetch(PDO::FETCH_OBJ);
+        $res=unescape_special_characters_in_object($res);
         return $res;
     }
     function delete_users( $db , $id){
+        $id=escape_special_characters($id);
         $sql = "DELETE FROM `users` WHERE `id`=".$id; 
         try {
             $exe = $db->query($sql);
@@ -82,6 +104,9 @@
         }
     }
     function update_users( $db , $id , $name , $email ){
+        $id=escape_special_characters($id);
+        $name=escape_special_characters($name);
+        $email=escape_special_characters($email);
         //remplissage des champs name et email si non donnés
         if($name==""){
             $sql = 'select `name` from users WHERE `users`.`id`='.$id;
@@ -116,7 +141,7 @@
             http_response_code(500);
             exit(-1);
         }
-        $sql = "SELECT * FROM USERS WHERE `name`='".$name."' AND `id`=".$id;
+        $sql = "SELECT * FROM USERS WHERE `id`=".$id;
         try {
             $exe = $db->query($sql);
         } catch (\Throwable $th) {
@@ -126,6 +151,7 @@
             exit(-1);
         }
         $res = $exe->fetch(PDO::FETCH_OBJ);
+        $res=unescape_special_characters_in_object($res);
         return $res;
     }
     // ==============

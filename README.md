@@ -16,6 +16,6 @@ GET localhost/IDAW/tp4/exo5/users.php?id= :imput:id liste des user en json
 
 POST localhost/IDAW/tp4/exo5/users.php avec un "email" et un "name" il rajoutera un user dans la table et revera un json avec les donnés de l'user crée en json
 
-PATCH localhost/IDAW/tp4/exo5/users.php avec un "id" (non null) un "email" (si null recuperera l'email de l'user déja dans la base) et un "name" (si null recuperera len name  de l'user déja dans la base) il mettra à jour le user avec le bon id et renverra la version modifiée
+PUT localhost/IDAW/tp4/exo5/users.php avec un "id" (non null) un "email" (si null recuperera l'email de l'user déja dans la base) et un "name" (si null recuperera len name  de l'user déja dans la base) il mettra à jour le user avec le bon id et renverra la version modifiée
 
 DELETE localhost/IDAW/tp4/exo5/users.php avec un "id" (non null) il suprimera le user avec le bon id
